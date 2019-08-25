@@ -1,19 +1,21 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "cats/index", type: :view do
-  before(:each) do
+  before do
     assign(:cats, [
       Cat.create!(
-        :name => "Name"
+        name: "Name",
       ),
       Cat.create!(
-        :name => "Name"
-      )
+        name: "Name",
+      ),
     ])
   end
 
   it "renders a list of cats" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
+    assert_select "tr>td", text: "Name".to_s, count: 2
   end
 end

@@ -19,4 +19,5 @@ Layout/DotPosition:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: aligned
 
-
+Style/FrozenStringLiteralComment:
+  Enabled: true
