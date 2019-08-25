@@ -20,4 +20,4 @@ test:
 
 production:
   <<: *default
-  url: "<%= Rails.application.credentials.cleardb_database_url %>"
+  url: <%= Rails.application.credentials.cleardb_database_url %>
