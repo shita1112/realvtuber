@@ -2,6 +2,7 @@
   "name": "realvtuber",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.2",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
     "bulma": "^0.7.5",
