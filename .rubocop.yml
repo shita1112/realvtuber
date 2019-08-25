@@ -1,0 +1,22 @@
+inherit_gem:
+  onkcop:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
+    - "config/rspec.yml"
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - "bin/bundle"
+    - "node_modules/**/*"
+
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+
+

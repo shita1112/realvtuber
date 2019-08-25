@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/shita1112/onkcop.git
+  revision: 7af40f9869dd9aa78e1e0eadee162524ddb0cef0
+  specs:
+    onkcop (0.53.0.3)
+      rubocop (>= 0.53.0)
+      rubocop-rspec (>= 1.24.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +70,7 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    ast (2.4.0)
     awesome_print (1.8.0)
     bindex (0.8.1)
     binding_of_caller (0.8.0)
@@ -125,6 +134,7 @@ GEM
     google-analytics-rails (1.1.1)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     launchy (2.4.3)
@@ -161,6 +171,9 @@ GEM
     nio4r (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    parallel (1.17.0)
+    parser (2.6.3.0)
+      ast (~> 2.4.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -215,12 +228,26 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     request_store (1.4.1)
       rack (>= 1.4)
+    rubocop (0.74.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.3.0)
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
+    rubocop-rspec (1.35.0)
+      rubocop (>= 0.60.0)
+    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -261,6 +288,7 @@ GEM
     tilt (2.0.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    unicode-display_width (1.6.0)
     uniform_notifier (1.12.1)
     web-console (4.0.1)
       actionview (>= 6.0.0)
@@ -297,6 +325,7 @@ DEPENDENCIES
   meta-tags
   mysql2 (>= 0.4.4)
   newrelic_rpm
+  onkcop!
   pry-alias
   pry-byebug
   pry-doc
@@ -305,6 +334,9 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 6.0.0)
   rails_12factor
+  rubocop
+  rubocop-rails
+  rubocop-rspec
   sass-rails (~> 5)
   sitemap_generator
   slim-rails
