@@ -1,9 +1,6 @@
 default: &default
   adapter: mysql2
   encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
   pool: 5
   timeout: 5000
 
@@ -12,14 +9,14 @@ development:
   database: realvtuber_development
   host: localhost
   username: root
-  password: "<%= Rails.application.credentials.local_db_pass %>"
+  password:
 
 test:
   <<: *default
   database: realvtuber_test
   host: localhost
   username: root
-  password: "<%= Rails.application.credentials.local_db_pass %>"
+  password:
 
 production:
   <<: *default

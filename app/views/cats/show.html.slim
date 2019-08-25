@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @cat.name
+
+=> link_to 'Edit', edit_cat_path(@cat)
+'|
+=< link_to 'Back', cats_path

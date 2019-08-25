@@ -1,0 +1,21 @@
+h1 Listing cats
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @cats.each do |cat|
+      tr
+        td = cat.name
+        td = link_to 'Show', cat
+        td = link_to 'Edit', edit_cat_path(cat)
+        td = link_to 'Destroy', cat, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Cat', new_cat_path
