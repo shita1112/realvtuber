@@ -10,11 +10,17 @@ default: &default
 development:
   <<: *default
   database: realvtuber_development
+  host: localhost
+  username: root
+  password: "<%= Rails.application.credentials.local_db_pass %>"
 
 test:
   <<: *default
   database: realvtuber_test
+  host: localhost
+  username: root
+  password: "<%= Rails.application.credentials.local_db_pass %>"
 
 production:
   <<: *default
-  url: ""
+  url: "<%= Rails.application.credentials.cleardb_database_url %>"
