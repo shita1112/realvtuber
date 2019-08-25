@@ -3,10 +3,13 @@ html
   head
     title
       | Realvtuber
+
+    = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all'
-    = Gon::Base.render_data
-    = javascript_pack_tag 'application'
+    = favicon_link_tag
   body
     = yield
+
+    = Gon::Base.render_data
+    = javascript_pack_tag 'application'
