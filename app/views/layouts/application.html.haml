@@ -1,16 +1,14 @@
-doctype html
-html
-  head
-    title
-      | Realvtuber
-
+!!!
+%html
+  %head
+    %title Realvtuber
     = stylesheet_link_tag "application", media: "all"
 
     = csrf_meta_tags
     = csp_meta_tag
 
     = favicon_link_tag
-  body
+  %body
     = yield
 
     = Gon::Base.render_data

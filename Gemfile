@@ -22,7 +22,7 @@ gem "puma", "~> 3.11"
 gem "rails", "~> 6.0.0"
 gem "sass-rails", "~> 5"
 gem "sitemap_generator"
-gem "slim-rails"
+gem "haml-rails"
 gem "tapp"
 gem "webpacker", "~> 4.0"
 
