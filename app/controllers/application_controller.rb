@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+
   before_action :redirect_to_original_domain, if: %i[herokuapp_domain? production?]
 
   private
@@ -15,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def production?
     Rails.env.production?
+  end
+
+  def not_authorized
+    redirect_to root_path, alert: "権限がありません。"
   end
 end
