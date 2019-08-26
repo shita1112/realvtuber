@@ -10,6 +10,8 @@ gem "active_hash"
 gem "awesome_print"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "config"
+gem "daemons"
+gem "delayed_job_active_record"
 gem "faraday"
 gem "gon"
 gem "google-analytics-rails"
