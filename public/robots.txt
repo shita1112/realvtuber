@@ -1,2 +1,3 @@
-User-Agent: *
-Disallow: /
+User-agent: *
+
+Sitemap: https://realvtuber.shita1112.com/sitemap.xml.gz
