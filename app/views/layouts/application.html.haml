@@ -10,6 +10,8 @@
     = csrf_meta_tags
     = csp_meta_tag
     = favicon_link_tag
+    = analytics_init if Rails.env.production?
+
   %body
     = yield
 

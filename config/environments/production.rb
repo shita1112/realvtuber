@@ -110,4 +110,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "hhh" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+
+  GA.tracker = ENV["GA_TRACKER"]
 end
