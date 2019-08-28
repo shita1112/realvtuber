@@ -2,7 +2,7 @@
 
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    config.fog_provider = 'AWS'
+    config.fog_provider = "AWS"
     config.aws_access_key_id = Rails.application.credentials.aws_access_key_id
     config.aws_secret_access_key = Rails.application.credentials.aws_secret_access_key
     # To use AWS reduced redundancy storage.
@@ -68,7 +68,7 @@ if defined?(AssetSync)
       public_root = Rails.root.join("public")
       Dir.chdir(public_root) do
         packs_dir = Webpacker.config.public_output_path.relative_path_from(public_root)
-        Dir[File.join(packs_dir, '/**/**')]
+        Dir[File.join(packs_dir, "/**/**")]
       end
     end
 
