@@ -12,6 +12,7 @@ gem "awesome_print"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "carrierwave"
 gem "config"
+gem "devise"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "faraday"

@@ -13,7 +13,11 @@
     = analytics_init if Rails.env.production?
 
   %body
-    = yield
+    -# = render_navbar
+    .container
+      = render "flash_message"
+      = yield
+      -# = render 'footer'
 
-    = Gon::Base.render_data
-    = javascript_pack_tag "application"
+      = Gon::Base.render_data
+      = javascript_pack_tag 'application'

@@ -107,7 +107,7 @@ Rails.application.configure do
   # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :scss
 
-  config.action_mailer.default_url_options = { host: "hhh" }
+  config.action_mailer.default_url_options = { host: Settings.original_domain }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
