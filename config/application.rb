@@ -1,4 +1,6 @@
-require_relative 'boot'
+# frozen_string_literal: true
+
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -31,5 +33,27 @@ module Realvtuber
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = "Tokyo"
+
+    config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.skip_routes true
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
+      g.test_framework :rspec,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: false,
+                       request_specs: false,
+                       system_specs: true,
+                       model_specs: true,
+                       fixtures: true
+      g.fixture_replacement :factory_bot,
+                            dir: "spec/factories"
+    end
   end
 end
