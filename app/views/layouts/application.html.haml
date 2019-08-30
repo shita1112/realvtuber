@@ -21,3 +21,27 @@
 
       = Gon::Base.render_data
       = javascript_pack_tag 'application'
+
+      / Collapse buttons
+      %div
+        %a.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample"}
+          Link with href
+        %button.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", :type => "button"}
+          Button with data-target
+      / / Collapse buttons
+      / Collapsible element
+      #collapseExample.collapse
+        .mt-3
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+          keffiyeh helvetica,
+          craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      / / Collapsible element
+
+
+      / Button with wave
+      %a.btn.btn-primary.btn-lg.waves-effect Click me
+      / Mask with wave
+      .view.overlay
+        %img.img-fluid{:alt => "Sample image with waves effect.", :src => "https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20(54).jpg"}/
+        %a{:href => "#"}
+          .mask.waves-effect.waves-light.rgba-white-slight
