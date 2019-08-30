@@ -1,8 +1,9 @@
 %header.mb-3
   %nav.navbar
     .container
-      = link_to root_path, class: "navbar-brand waves-effect" do
-        = image_tag "logo.png", alt: "ロゴ"
+      = link_to root_path, class: "navbar-brand" do
+        .waves-effect
+          = image_tag "logo.png", alt: "ロゴ"
 
       .text-right
         - if user_signed_in?
