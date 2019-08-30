@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
 
   if Rails.env.production?
     config.storage = :fog
-    config.asset_host = Rails.application.credentials.cdn_url
+    config.asset_host = Rails.application.credentials.s3_cdn_url
   else
     config.storage = :file
   end

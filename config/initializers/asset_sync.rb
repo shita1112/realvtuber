@@ -59,21 +59,5 @@ if defined?(AssetSync)
     # If you have an asset with name `app.0ba4d3.js`, only `app.0ba4d3` will need to be matched
     # config.cache_asset_regexps = [ /\.[a-f0-9]{8}$/i, /\.[a-f0-9]{20}$/i ]
     # config.cache_asset_regexp = /\.[a-f0-9]{8}$/i
-    # webpackerのjsのキャッシュ
-    config.cache_asset_regexp = /.*/
-
-    # asset_syncはデフォでwepbackerに対応していない
-    # そのためwebpackerで生成するjsもS3に置くようにする
-    config.add_local_file_paths do
-      public_root = Rails.root.join("public")
-      Dir.chdir(public_root) do
-        packs_dir = Webpacker.config.public_output_path.relative_path_from(public_root)
-        Dir[File.join(packs_dir, "/**/**")]
-      end
-    end
-
-    # デフォのs3へのuploadはwebpackerのコンパイル前に行われてしまう
-    # そのためデフォのuploadは停止して、代わりにassets.rakeで自分でuploadする
-    config.run_on_precompile = false
   end
 end

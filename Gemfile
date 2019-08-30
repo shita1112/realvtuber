@@ -7,7 +7,6 @@ ruby "2.6.3"
 
 gem "active_decorator"
 gem "active_hash"
-gem "asset_sync"
 gem "awesome_print"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "carrierwave"

@@ -70,11 +70,6 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    asset_sync (2.8.1)
-      activemodel (>= 4.1.0)
-      fog-core
-      mime-types (>= 2.99)
-      unf
     ast (2.4.0)
     awesome_print (1.8.0)
     bcrypt (3.1.13)
@@ -383,9 +378,6 @@ GEM
     tilt (2.0.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.6)
     unicode-display_width (1.6.0)
     uniform_notifier (1.12.1)
     warden (1.2.8)
@@ -411,7 +403,6 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   active_hash
-  asset_sync
   awesome_print
   bootsnap (>= 1.4.2)
   bullet
