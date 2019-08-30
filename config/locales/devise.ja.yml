@@ -18,7 +18,7 @@ ja:
       unconfirmed: 'メールアドレスの本人確認が必要です。'
     mailer:
       confirmation_instructions:
-        subject: 'アカウントの有効化について'
+        subject: '本登録を完了させてください'
       reset_password_instructions:
         subject: 'パスワードの再設定について'
       unlock_instructions:

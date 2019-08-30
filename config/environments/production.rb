@@ -110,6 +110,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.original_domain }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  ActionMailer::Base.smtp_settings = {
+    user_name: Rails.application.credentials.sendgrid_username,
+    password: Rails.application.credentials.sendgrid_password,
+    domain: Settings.original_domain,
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true,
+  }
 
   GA.tracker = ENV["GA_TRACKER"]
 end
