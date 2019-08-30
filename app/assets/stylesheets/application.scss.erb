@@ -1,9 +1,9 @@
 // vendor
-$roboto-font-path: 'mdb/font/roboto/';
+$roboto-font-path: "<%= Rails.application.config.action_controller.asset_host %>/roboto/";
 @import "bootstrap/scss/bootstrap.scss";
 @import "mdb/scss/mdb.scss";
 
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+$fa-font-path: "<%= Rails.application.config.action_controller.asset_host %>/webfonts/";
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/solid';
 @import '@fortawesome/fontawesome-free/scss/regular';
