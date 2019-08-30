@@ -1,2 +1,20 @@
 ja:
-  hello: "こんにちは世界"
+  # activemodel:
+  #   attributes:
+  #     work_form:
+  #       name: hoge
+
+  activerecord:
+    # models:
+    #   user: ユーザー
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+
+  # enums:
+  #   trained_model:
+  #     model_type:
+  #       nomal: Normal
+  #       hq: HQ
+

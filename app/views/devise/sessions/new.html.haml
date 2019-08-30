@@ -1,17 +1,21 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.row.justify-content-center
+  .col-12.col-md-6
+    .card
+      %h1.card-header.info-color.white-text.text-center.py-1.font-200
+        %strong ログイン
+
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.hidden_field :remember_me, value: true
+          .md-form
+            = f.email_field :email, autocomplete: "email", class: "form-control", required: true
+            = f.label :email
+          .md-form
+            = f.password_field :password, autocomplete: "current-password", class: "form-control", required: true
+            = f.label :password
+            %p.font-small.d-flex.justify-content-end= link_to "パスワードを忘れた？", new_password_path(resource_name)
+          .f-submit-block
+            = f.submit("ログイン", class: "btn btn-outline-info btn-rounded my-4 z-depth-0 btn-block")
+
+    %p.text-center.mt-3
+      = link_to "新しくアカウントを登録", new_registration_path(resource_name)

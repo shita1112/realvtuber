@@ -1,0 +1,16 @@
+%header.mb-3
+  %nav.navbar
+    .container
+      = link_to root_path, class: "navbar-brand waves-effect" do
+        = image_tag "logo.png", alt: "ロゴ"
+
+      .text-right
+        - if user_signed_in?
+          .dropdown.d-inline-block.ml-2
+            %button.dropdown-toggle.btn-floating.btn-floating-border.waves-effect.btn-sm.m-0-if-smartphone{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}= icon("fas", "fa-user")
+            .dropdown-menu.dropdown-menu-right
+              = link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item"
+              -# .dropdown-divider
+        - else
+          = link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary waves-effect font-weight-bold", role: "button"
+          = link_to "ユーザー登録", new_registration_path(:user), class: "btn btn-outline-primary waves-effect font-weight-bold", role: "button"

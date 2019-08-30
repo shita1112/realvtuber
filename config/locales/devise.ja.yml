@@ -1,4 +1,4 @@
-# 参照: https://gist.github.com/kaorumori/7276cec9c2d15940a3d93c6fcfab19f3
+# 参考: https://whatsupguys.net/programming-school-dive-into-code-learning-47/
 
 ja:
   devise:
@@ -60,3 +60,9 @@ ja:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした:"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+      taken: "は既に使用されています。"
+      blank: "が入力されていません。"
+      too_short: "は%{count}文字以上に設定して下さい。"
+      too_long: "は%{count}文字以下に設定して下さい。"
+      invalid: "は有効でありません。"
+      confirmation: "が内容とあっていません。"

@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  default_form_builder ApplicationFormBuilder
+
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   before_action :redirect_to_original_domain, if: %i[herokuapp_domain? production?]

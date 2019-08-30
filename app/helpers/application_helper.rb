@@ -8,4 +8,12 @@ module ApplicationHelper
       reverse: true,
     )
   end
+
+  def render_navbar
+    render "navbar"
+  end
+
+  def icon(*classes)
+    tag.i(class: classes.join(" "))
+  end
 end

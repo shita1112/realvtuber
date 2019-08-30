@@ -1,10 +1,17 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.row.justify-content-center
+  .col-12.col-md-6
+    .card
+
+      %h1.card-header.info-color.white-text.text-center.py-1.font-150
+        %strong パスワードを忘れた？
+
+      .card-body
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = f.error_messages
+          .md-form
+            = f.email_field :email, autocomplete: "email", class: "form-control", required: true
+            = f.label :email
+          .f-submit-block
+            = f.submit("送信する", class: "btn btn-outline-info btn-rounded my-4 z-depth-0 btn-block")
+    %p.text-center.mt-3
+      = link_to "新しくアカウントを登録する", new_registration_path(resource_name)

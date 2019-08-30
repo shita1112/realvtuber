@@ -1,21 +1,20 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.row.justify-content-center
+  .col-12.col-md-6
+    .card
+      %h1.card-header.secondary-color.white-text.text-center.py-1.font-200
+        %strong ユーザー登録
+
+      .card-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.error_messages
+          .md-form
+            = f.email_field :email, autocomplete: "email", class: "form-control", required: true
+            = f.label :email
+          .md-form
+            = f.password_field :password, autocomplete: "current-password", class: "form-control", required: true
+            = f.label :password
+          .f-submit-block
+            = f.submit("ユーザー登録", class: "btn btn-outline-info btn-rounded my-4 z-depth-0 btn-block")
+
+    %p.text-center.mt-3
+      = link_to "アカウントをお持ちの方", new_session_path(resource_name)

@@ -1,4 +1,17 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  この度は『リアルバーチャルYoutuber』をご利用いただきまして、誠にありがとうございます。
+  %br
+  仮会員登録が完了いたしました。下記URLにアクセスし、本登録をお願いいたします。
+  %br
+
+%p= link_to '本登録', confirmation_url(@resource, confirmation_token: @token)
+
+%p
+  【ご注意】
+  %br
+  本メールは『リアルバーチャルYoutuber』の仮会員登録にてご入力頂いたメールアドレスに自動的にお送りしております。お心当たりがない場合は、本メールを破棄していただきますようお願いします。
+
+%p
+  【お問い合わせ】
+  %br
+  こちらのメールアドレスは送信専用です。直接返信されてもご返答できませんのであらかじめご了承ください。
