@@ -8,4 +8,9 @@ class User < ApplicationRecord
          :validatable,
          :trackable,
          :confirmable
+
+  has_many :works, dependent: :destroy
+  has_many :notifications, through: :works
+
+  enum role: { admin: 0, normal: 1 }
 end

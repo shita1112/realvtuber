@@ -1,0 +1,6 @@
+.my-2
+= link_to work, class: "waves-effect" do
+  %li.media
+    = image_tag work.df_image.url, class: "d-flex mr-3"
+    .media-body.text-dark
+      = render 'work_detail', work: work

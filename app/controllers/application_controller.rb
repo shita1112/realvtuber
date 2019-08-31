@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   before_action :redirect_to_original_domain, if: %i[herokuapp_domain? production?]
 
+  helper_method :notifications, :notifications_count, :notifications_exists?
+
   private
 
   def redirect_to_original_domain
@@ -25,5 +27,17 @@ class ApplicationController < ActionController::Base
 
   def not_authorized
     redirect_to root_path, alert: "権限がありません。"
+  end
+
+  def notifications
+    @_notifications ||= current_user.notifications.unread.preload(work: :trained_model)
+  end
+
+  def notifications_count
+    @_notifications_count ||= notifications.count
+  end
+
+  def notifications_exists?
+    notifications_count > 0
   end
 end

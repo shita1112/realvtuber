@@ -13,7 +13,6 @@
 !/log/.keep
 !/tmp/.keep
 
-
 /public/assets
 .byebug_history
 
@@ -33,3 +32,8 @@ config/environments/*.local.yml
 
 public/sitemap.xml.gz
 public/sitemaps
+
+/spec/vcr/*
+/public/uploads/
+
+.sass-cache

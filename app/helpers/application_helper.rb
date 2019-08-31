@@ -16,4 +16,12 @@ module ApplicationHelper
   def icon(*classes)
     tag.i(class: classes.join(" "))
   end
+
+  def smartphone?
+    browser.device.mobile?
+  end
+
+  def tablet_pc?
+    !!smartphone?
+  end
 end

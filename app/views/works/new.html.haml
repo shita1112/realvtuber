@@ -1,0 +1,58 @@
+- title "動画を作る"
+
+%h1.h1-responsive.my-4 動画を作る
+
+%main#works_new
+  = form_with model: @work, local: true do |f|
+    = f.error_messages
+
+    .my-stepper.d-flex.flex-column
+      .d-flex.mb-1
+        .my-stepper-left.d-flex.flex-column.align-items-center
+          .rounded-circle.px-2.bg-primary.text-white.mb-1 1
+          .line.h-100
+        .my-stepper-right.w-100
+          .ml-2.font-weight-bold ベースとなる動画をアップロードする
+          .my-stepper-content.my-4.w-100
+            -# .col-12.col-md-6
+            .file-upload-wrapper.my-2
+              = f.file_field :original_video, class: "file-upload wh-0", data: {"max-file-size" => "10M", "allowed-file-extensions" => ["mp4"], "default-file" => f.object.original_video.url }, required: true
+              = f.hidden_field :original_video_cache
+            %dl.text-muted.font-75
+              %dd.m-0 ファイルフォーマット：MP4
+              %dd.m-0 ファイルサイズ：最大10MBまで
+              %dd.m-0 動画の長さ：最大5分まで
+
+      .d-flex.mb-1
+        .my-stepper-left.d-flex.flex-column.align-items-center
+          .rounded-circle.px-2.bg-primary.text-white.mb-1 2
+          .line.h-100
+        .my-stepper-right.w-100
+          .ml-2.font-weight-bold なりたい顔を選ぶ
+          .my-stepper-content.my-4.ml-3
+            .row
+              - @trained_models.each do |trained_model|
+                .col-4.col-md-2.p-1
+                  = f.radio_button :trained_model_id, trained_model.id, class: "image-radio", required: true
+                  = f.label :trained_model_id, value: trained_model.id, class: "w-100 image-label" do
+                    .card
+                      .view.pointer
+                        = image_tag trained_model.face_image.url, class: "card-img-top", alt: trained_model.name
+                      .card-body.p-0.pointer
+                        %p.card-title.text-center.my-1
+                          = trained_model.display_name
+
+
+      .d-flex.mb-1
+        .my-stepper-left.d-flex.flex-column.align-items-center
+          .rounded-circle.px-2.bg-primary.text-white.mb-1 3
+          .h-100
+        .my-stepper-right.w-100
+          .ml-2.font-weight-bold 動画を作る
+          .my-stepper-content.my-4
+            .text-right= f.submit "動画を作る", class: "btn btn-primary btn-lg"
+
+
+
+
+

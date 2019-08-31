@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.cursor-default {
+  cursor: default;
+}
+
 .font-50{
   font-size: 50%;
 }
@@ -30,8 +34,16 @@
   height: 150px
 }
 
+.height-200px{
+  height: 200px
+}
+
 .height-500px{
   height: 500px
+}
+
+.w-60 {
+  width: 60%;
 }
 
 .max-width-400px {
@@ -210,4 +222,36 @@
 .wh-100px {
   width: 100px;
   height: 100px;
+}
+
+.wh-0 {
+  width: 0;
+  height: 0;
+}
+
+.btn-floating-border-disabled {
+  border: 1px solid grey;
+  background-color: white;
+  cursor: default;
+  box-shadow: 0 0;
+  &:hover{
+    box-shadow: 0 0;
+  }
+  i {
+    color: grey;
+  }
+}
+
+.notification-container {
+  position: relative;
+}
+
+.counter-bell {
+  position: absolute;
+  left: 55px;
+  top: 5px !important;
+}
+
+.intro{
+  height: 500px
 }

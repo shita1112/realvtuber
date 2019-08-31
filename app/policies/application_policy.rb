@@ -48,4 +48,10 @@ class ApplicationPolicy
       scope.all
     end
   end
+
+  private
+
+  def admin_or_has_record?
+    @user.admin? || @record.user == @user
+  end
 end

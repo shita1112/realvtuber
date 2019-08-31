@@ -11,10 +11,23 @@ ja:
       user:
         email: メールアドレス
         password: パスワード
+    # errors:
+    #   models:
 
-  # enums:
-  #   trained_model:
-  #     model_type:
-  #       nomal: Normal
-  #       hq: HQ
 
+  enums:
+    user:
+      role:
+        admin: 管理者
+        normal: 一般ユーザー
+
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      kanji: "%Y年%m月%d日"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S" # バグ?機能しない
+      kanji: "%Y年%m月%d日 %H時%M分%S秒"
+      simple: "%Y/%m/%d %H:%M:%S"
+      date: "%Y/%m/%d"

@@ -1,0 +1,14 @@
+#works_new {
+  .image-radio:checked + .image-label {
+    // border: orange 5px solid;
+    // border-radius: 10px;
+    outline: orange 5px solid;
+  }
+
+  .video-radio:checked + .video-label .video {
+    // border: orange 5px solid;
+    // border-radius: 10px;
+    outline: orange 5px solid;
+  }
+
+}

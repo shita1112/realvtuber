@@ -1,0 +1,16 @@
+
+
+- if notifications_exists?
+  .dropdown.d-inline-block.ml-2.notification-container
+    %button.dropdown-toggle.btn-floating.btn-floating-border.waves-effect.btn-sm.m-0-if-smartphone.btn-notification{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+      = icon("fas", "fa-bell")
+    %span.counter.counter-lg.counter-bell= notifications_count
+    .dropdown-menu.dropdown-menu-right
+      - notifications.each do |notification|
+        = link_to notification, class: "dropdown-item" do
+          %p 動画作成が完了しました。リンクをクリックしてダウンロードしてください。
+          = render "works/work_detail", work: notification.work
+        .dropdown-divider
+- else
+  .btn-floating.btn-floating-border-disabled.btn-sm.m-0-if-smartphone= icon("fas", "fa-bell")
+

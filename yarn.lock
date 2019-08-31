@@ -4025,7 +4025,7 @@ md5.js@^1.3.4:
 
 "mdb@https://github.com/shita1112/mdb":
   version "4.8.8"
-  resolved "https://github.com/shita1112/mdb#dbf885acd45faad106de15c6348477abbe8cc5c4"
+  resolved "https://github.com/shita1112/mdb#4178031808405f2cdc8bfbd01ee4529415d72730"
 
 mdn-data@2.0.4:
   version "2.0.4"

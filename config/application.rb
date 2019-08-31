@@ -66,18 +66,22 @@ module Realvtuber
     # バリデーションエラー時に、自動でHTML変更
     # MDB4用にカスタマイズ
     config.action_view.field_error_proc = ->(html_tag, instance) do
-      if instance.kind_of?(ActionView::Helpers::Tags::Label)
+      if instance.is_a?(ActionView::Helpers::Tags::Label)
         html_tag.html_safe
       else
         a = html_tag.split('class="')
-        if a.present?
-          new_html_tag = a[0] + 'class="is-invalid ' + a[1]
-        else
-          new_html_tag = html_tag[0..-3] + 'class="is_invalid" />'
-        end
+        new_html_tag = if a.present?
+                         a[0] + 'class="is-invalid ' + a[1]
+                       else
+                         html_tag[0..-3] + 'class="is_invalid" />'
+                       end
         # "#{new_html_tag}<div class='invalid-feedback'>#{instance.error_message.first}</div>".html_safe
         new_html_tag.html_safe
       end
     end
+
+    config.autoload_paths << Rails.root.join("lib", "constraints")
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end
