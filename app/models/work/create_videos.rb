@@ -4,8 +4,9 @@ class Work
   module CreateVideos
     include Rake::FileUtilsExt
 
+    # 通常動画はお試し程度にしておいて、高品質動画は別で用意する
+    TRAIN_TIME = 15.minutes
     DETECTOR = "mtcnn"
-    TRAIN_TIME = 5.minutes
     SAVE_INTERVAL = 50
     GPUS = 1
 
