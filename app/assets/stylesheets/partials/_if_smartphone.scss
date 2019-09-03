@@ -1,0 +1,20 @@
+// downの場合は1つ小さくないとずれる
+@include media-breakpoint-down(sm) {
+  .btn-xs-if-smartphone {
+    margin: 6px 6px 6px 6px;
+    padding: 14px;
+    font-size: 0.7rem;
+  }
+
+  .p-0-if-smartphone {
+    padding: 0;
+  }
+
+  .m-0-if-smartphone {
+    margin: 0;
+  }
+
+  .font-75-if-smartphone {
+    font-size: 75%;
+  }
+}

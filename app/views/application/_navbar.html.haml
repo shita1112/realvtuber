@@ -1,7 +1,7 @@
 %header.mb-3
   %nav.navbar
-    .container
-      = link_to root_path, class: "navbar-brand" do
+    .container.p-0-if-smartphone
+      = link_to root_path, class: "navbar-brand mr-0" do
         .waves-effect
           = image_tag "inversed_logo.png", alt: "ロゴ"
 
@@ -9,13 +9,17 @@
         - if user_signed_in?
           = link_to "動画作成", new_work_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"
 
-          .dropdown.d-inline-block.ml-2
-            %button.dropdown-toggle.btn-floating.btn-floating-border.waves-effect.btn-sm.m-0-if-smartphone{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}= icon("fas", "fa-user")
+          .dropdown.d-inline-block
+            %button.dropdown-toggle.btn-floating.btn-floating-border.waves-effect.btn-sm{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}= icon("fas", "fa-user")
             .dropdown-menu.dropdown-menu-right
+              = link_to "高品質な動画を作る・顔を作る", order_path, class: "dropdown-item"
+              .dropdown-divider
               = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
-              -# .dropdown-divider
+              - if current_user.admin?
+                .dropdown-divider
+                = link_to "ダッシュボード", admin_dashboard_path, class: "dropdown-item"
 
-          = render "notifications"
+          = render "notifications/notifications"
         - else
-          = link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary waves-effect font-weight-bold", role: "button"
-          = link_to "ユーザー登録", new_registration_path(:user), class: "btn btn-primary waves-effect font-weight-bold", role: "button"
+          = link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"
+          = link_to "ユーザー登録", new_registration_path(:user), class: "btn btn-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"

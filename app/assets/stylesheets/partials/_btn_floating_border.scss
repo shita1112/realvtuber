@@ -1,0 +1,20 @@
+.btn-floating-border {
+  border: 1px solid black !important;
+  background-color: white;
+  i {
+    color: black;
+  }
+}
+
+.btn-floating-border-disabled {
+  border: 1px solid grey;
+  background-color: white;
+  cursor: default;
+  box-shadow: 0 0;
+  &:hover{
+    box-shadow: 0 0;
+  }
+  i {
+    color: grey;
+  }
+}

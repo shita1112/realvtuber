@@ -1,0 +1,12 @@
+// 参考: https://coliss.com/articles/build-websites/operation/css/css-sticky-footer.html
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}

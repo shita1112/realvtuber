@@ -1,8 +1,13 @@
 - title "動画を作る"
 
-%h1.h1-responsive.my-4 動画を作る
+%h1.h1-responsive.my-4.mr-1.d-inline-block 動画を作る
 
-%main#works_new
+-# モーダルボタン
+= link_to "", "data-target" => "#hint_modal", "data-toggle" => "modal" do
+  = icon("fas", "fa-question-circle")
+  上手に作るには？
+
+%main
   = form_with model: @work, local: true do |f|
     = f.error_messages
 
@@ -16,12 +21,17 @@
           .my-stepper-content.my-4.w-100
             -# .col-12.col-md-6
             .file-upload-wrapper.my-2
-              = f.file_field :original_video, class: "file-upload wh-0", data: {"max-file-size" => "10M", "allowed-file-extensions" => ["mp4"], "default-file" => f.object.original_video.url }, required: true
+              = f.file_field :original_video, class: "file-upload wh-0", data: {"max-file-size" => "10M", "allowed-file-extensions" => %i(mp4 mov), "default-file" => f.object.original_video.url }, required: true, accept: "video/*"
               = f.hidden_field :original_video_cache
             %dl.text-muted.font-75
-              %dd.m-0 ファイルフォーマット：MP4
+              %dd.m-0 ファイルフォーマット：MP4、MOV
               %dd.m-0 動画の長さ：最大1分まで
               %dd.m-0 ファイルサイズ：最大10MBまで
+              %dd.m-0
+                = link_to order_path, target: "_blank" do
+                  = icon("fas", "fa-question-circle")
+                  1分・10MB以上の動画を作るには？
+
 
       .d-flex.mb-1
         .my-stepper-left.d-flex.flex-column.align-items-center
@@ -29,7 +39,7 @@
           .line.h-100
         .my-stepper-right.w-100
           .ml-2.font-weight-bold なりたい顔を選ぶ
-          .my-stepper-content.my-4.ml-3
+          .my-stepper-content.my-4.mx-2
             .row
               - @trained_models.each do |trained_model|
                 .col-4.col-md-2.p-1
@@ -39,7 +49,7 @@
                       .view.pointer
                         = image_tag trained_model.face_image.url, class: "card-img-top", alt: trained_model.name
                       .card-body.p-0.pointer
-                        %p.card-title.text-center.my-1
+                        %p.card-title.text-center.my-1.font-75-if-smartphone
                           = trained_model.display_name
 
 
@@ -52,7 +62,31 @@
           .my-stepper-content.my-4
             .text-right= f.submit "動画を作る", class: "btn btn-primary btn-lg"
 
+-# モーダルダイアログ(解説)
+#hint_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "hint_modal_label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered{:role => "document"}
+    .modal-content
+      .modal-header.primary-color.white-text
+        %h5#hint_modal_label.modal-title 上手に作るには？
 
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span.lighten-1.white-text{"aria-hidden" => "true"} ×
 
-
+      .modal-body
+        .text-center.grey.white-text コツ・ポイント
+        %ul.list-group.list-group-flush
+          %li.list-group-item 登場人物は一人にしてください。
+          %li.list-group-item
+            できるだけ正面を向いてください。
+            .text-muted （少し横を向く程度なら問題ありません。）
+          %li.list-group-item
+            できるだけ顔を隠さないでください。
+            .text-muted （少し手で隠れる程度なら問題ありません。マスク・サングラス等で隠すとうまくいかないことがあります。）
+        .text-center.grey.white-text ご確認
+        %ul.list-group.list-group-flush
+          %li.list-group-item サポートしているファイルフォーマットはMP4・MOVです。
+          %li.list-group-item 動画の長さは最大1分までです。
+          %li.list-group-item ファイルサイズは最大10MBまでです。
+      .modal-footer
+        %button.btn.btn-outline-primary{type: "button", "data-dismiss": "modal"} 閉じる
 

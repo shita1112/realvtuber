@@ -10,4 +10,8 @@ class ApplicationUploader < CarrierWave::Uploader::Base
   def size_range
     1..300.megabytes
   end
+
+  def signed_url
+    CloudFrontUrlSigner.new.signed_url(url)
+  end
 end

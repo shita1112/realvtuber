@@ -1,0 +1,10 @@
+%h2.h2-responsive= h2
+%table.table.table-striped.table-bordered.table-sm
+  %tr
+    - columns.each do |column|
+      %th= column
+    - objects.each do |job|
+      %tr
+        - columns.each do |column|
+          %td= ago_if_datetime job[column]
+

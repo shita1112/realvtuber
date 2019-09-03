@@ -5,7 +5,6 @@ class WorksController < ApplicationController
 
   def index
     @works = current_user.works
-                         .completed
                          .preload(:trained_model)
                          .order(created_at: :desc)
                          .page(params[:page])
@@ -28,8 +27,9 @@ class WorksController < ApplicationController
     @work.filename = @work.original_video.filename
 
     if @work.save
-      CreateVideosJob.perform_later(@work)
-      redirect_to root_url, notice: create_message
+      job = CreateVideosJob.perform_later(@work)
+      Delayed::Job.find(job.provider_job_id).update!(work: @work)
+      redirect_to root_url, notice: render_to_string(partial: "create_message")
     else
       @trained_models = TrainedModel.all
       render :new
@@ -48,11 +48,5 @@ class WorksController < ApplicationController
 
   def work_params
     params.require(:work).permit(:original_video, :original_video_cache, :trained_model_id)
-  end
-
-  def create_message
-    <<~HTML
-      <p>動画作成を受け付けました。AIが動画作成を完了するのに、15分ほどかかります。完了しましたら、画面右上の通知アイコンにてお知らせいたします。</p>
-    HTML
   end
 end

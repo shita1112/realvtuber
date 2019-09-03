@@ -8,6 +8,7 @@ ruby "2.6.3"
 gem "active_decorator"
 gem "active_hash"
 gem "awesome_print"
+gem "aws-sdk-cloudfront"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "browser"
 gem "carrierwave"
@@ -37,6 +38,7 @@ gem "sass-rails", "~> 5"
 gem "sitemap_generator"
 gem "streamio-ffmpeg"
 gem "tapp"
+gem "time_difference"
 gem "webpacker", "~> 4.0"
 
 group :development do

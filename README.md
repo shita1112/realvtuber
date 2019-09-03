@@ -1,24 +1,12 @@
-# README
+# Real Virtual Youtuber
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![comparison](./readme/comparison.gif)
 
-Things you may want to cover:
+Real Virtual Youtuber anonymizes your face by swapping the face of a non-existent person created by AI with your face.
 
-* Ruby version
+If you want to know more, read [this blog post]().
 
-* System dependencies
+## Navigation
+- Hosting: https://realvtuber.shita1112.com
+- Explanation Article(ja): ...
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

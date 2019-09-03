@@ -1,25 +1,26 @@
 - title @work.filename
 
 .row.justify-content-center
-  .col-12.col-md-6
+  .col-12.col-md-6.mt-3
     %h2.h2-responsive 作成した動画
     .card
       .view
         = image_tag @work.df_image.url, class: "card-img-top"
       .card-body
-        = link_to "ダウンロード", [@work, :df_video], class: "btn btn-primary btn-block"
+        = link_to "ダウンロード", @work.df_video.url, class: "btn btn-primary btn-block"
 
-  .col-12.col-md-6
+  .col-12.col-md-6.mt-3
     %h2.h2-responsive 比較動画
     .card
       .view
         = image_tag @work.comparison_image.url, class: "card-img-top"
       .card-body
-        = link_to "ダウンロード", [@work, :comparison_video], class: "btn btn-primary btn-block"
+        = link_to "ダウンロード", @work.comparison_video.url, class: "btn btn-primary btn-block"
 
   .col-12
     %hr.my-4
     %h2.h2-responsive 詳細
     = render 'work_detail', work: @work
+    .my-2
     = link_to "動画を削除する", @work, method: :delete, class: "btn btn-outline-danger", data: { confirm: "この操作は取り消せません。本当に削除しますか？"}
 

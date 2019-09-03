@@ -18,6 +18,11 @@ class BaseCommand
     end
   end
 
+  def simple_run(command)
+    puts "$ #{command}"
+    system(command)
+  end
+
   def python(*args)
     run("python", *args)
   end

@@ -125,5 +125,5 @@ Rails.application.configure do
     enable_starttls_auto: true,
   }
 
-  GA.tracker = ENV["GA_TRACKER"]
+  GA.tracker = Rails.application.credentials.ga_tracker
 end

@@ -1,61 +1,60 @@
-- title "AIで顔の匿名化"
-- description "AIが作成した実在しない人物の顔を、AIによる顔交換技術を使ってあなたの顔と交換することで、顔出しをせずに実写動画を作れます。"
+- desc = "AIが生み出した実在しない人物の顔を、あなたの顔に合成！別の人間になれます。"
+
+- title "AIで別の人間になる！"
+- description desc
 - set_meta_tags(reverse: false)
 
-
-.row.intro.align-items-center
+.row.align-items-center.my-4
   .col-12.col-md-5
-    %h1.h1-responsive.my-5.font-weight-bold リアルバーチャルYoutuber
-    %p.my-5 AIが生み出した実在しない人物の顔をあなたの動画に合成して、顔バレしない実写動画を作ります。
-    .d-flex.justify-content-center.my-5
+    %h1.h1-responsive.font-weight-bold リアルバーチャルYoutuber
+    %p= desc
+    .d-flex.justify-content-center.mb-3
       = link_to "無料ではじめる", new_registration_path(:user), class: "btn btn-primary btn-lg waves-effect font-weight-bold", role: "button"
   .col-12.col-md-7
-    //= image_tag "comparison.png", alt: "comparison", class: "w-100"
-    = video_tag "comparison.mp4", autoplay: true, muted: true, loop: true, playsinline: "playsinline", type: "video/mp4", class: "w-100"
+    = video_tag "comparison.mp4", autoplay: true, muted: true, loop: true, playsinline: "playsinline", autoplay: "autoplay", type: "video/mp4", class: "w-100"
 
 
 %hr
 %h2.h2-responsive.font-weight-bold.text-center.my-5 特徴
 .row.my-5.align-items-center
-  .col-12.col-md-4
+  .col-12.col-md-4.order-2.order-md-1
     = image_tag "ira_df.png", class: "w-100"
-  .col-12.col-md-8
+  .col-12.col-md-8.order-1.order-md-2
     %h3.h3-responsive.font-weight-bold 最新のAIテクノロジーを利用！
     %p
       フェイススワップ（ディープフェイク）と呼ばれる、ディープラーニングを用いた最新の顔合成技術を利用しているため、なめらかで自然な動画ができます。
 
 .row.my-5.align-items-center
   .col-12.col-md-8
-    %h3.h3-responsive.font-weight-bold モザイク・マスク・サングラスはもう不要！
+    %h3.h3-responsive.font-weight-bold マスク・サングラス・モザイクはもう不要！
     %p
-      『リアルバーチャルYoutuber』を使えば、匿名性を保ちつつも、リアルな表情や感情を伝えることができます。
+      顔を匿名化することで顔バレを防ぎつつ、表情はそのままにリアルな感情を伝えることができます。
   .col-12.col-md-4
     = image_tag "no_mask.png", class: "w-100"
 
 .row.my-5.align-items-center
-  .col-12.col-md-4
-    = image_tag "faces.png", class: "w-100"
-  .col-12.col-md-8
+  .col-12.col-md-4.order-2.order-md-1
+    .d-flex.justify-content-center
+      = image_tag "faces.png", class: "w-85"
+  .col-12.col-md-8.order-1.order-md-2
     %h3.h3-responsive.font-weight-bold なりたい顔になれる！
     %p
       すぐに利用できる顔モデルを複数用意しています。
       %br
-      用意された顔モデル以外にも、なりたい顔を自分で作成することもできます。（開発中）
+      用意された顔モデル以外にも、なりたい顔を自分で作成することもできます。
 
 %hr
 %h2.h2-responsive.font-weight-bold.text-center.my-5 はじめかた
 .row.my-5.text-center
-  .col-12.col-md-4
+  .col-12.col-md-4.mb-4
     %h3.h3-responsive STEP 1
     %p 動画をアップロードします。
     = image_tag "original_video.png", class: "w-100"
-  .col-12.col-md-4
-    %h3.h3-responsive STEP 1
-    %p なりたい顔を選びます。
-    -# = image_tag "white_man_face.png", class: "height-200px"
-    .d-flex= image_tag "select_face.png", class: "w-100"
-  .col-12.col-md-4
+  .col-12.col-md-4.mb-4
     %h3.h3-responsive STEP 2
+    %p なりたい顔を選びます。
+    = image_tag "select_face.png", class: "w-100"
+  .col-12.col-md-4.mb-4
+    %h3.h3-responsive STEP 3
     %p 完成です。
     = image_tag "df.png", class: "w-100"
-

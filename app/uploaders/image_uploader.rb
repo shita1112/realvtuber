@@ -11,4 +11,8 @@ class ImageUploader < ApplicationUploader
   def filename
     super.chomp(File.extname(super)) + ".jpeg" if original_filename.present?
   end
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.uuid}"
+  end
 end

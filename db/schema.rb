@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_902_082_223) do
+ActiveRecord::Schema.define(version: 2019_09_07_075135) do
+
   create_table "delayed_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 20_190_902_082_223) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.bigint "work_id"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -78,7 +78,9 @@ ActiveRecord::Schema.define(version: 20_190_902_082_223) do
     t.datetime "updated_at", null: false
     t.string "filename", null: false
     t.string "comparison_image"
+    t.string "uuid", null: false
     t.index ["trained_model_id"], name: "index_works_on_trained_model_id"
     t.index ["user_id"], name: "index_works_on_user_id"
   end
+
 end

@@ -1,0 +1,20 @@
+- if smartphone?
+  = link_to notification, class: "dropdown-item" do
+    = image_tag notification.work.df_image.url, class: "w-100"
+    %p 動画作成が完了しました。
+    %dl.m-0
+      %dd.m-0 顔モデル：#{notification.work.trained_model.display_name}
+      %dd.m-0 作成受付日時：#{ago notification.work.created_at}
+- else
+  = link_to notification, class: "dropdown-item" do
+    .d-flex
+      .work-image
+        = image_tag notification.work.df_image.url, class: "h-100px"
+      .mx-2
+      .work-detail
+        %p 動画作成が完了しました。リンクをクリックしてダウンロードしてください。
+        = render "works/work_detail", work: notification.work
+
+
+
+.dropdown-divider

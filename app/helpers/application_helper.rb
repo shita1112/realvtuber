@@ -9,10 +9,6 @@ module ApplicationHelper
     )
   end
 
-  def render_navbar
-    render "navbar"
-  end
-
   def icon(*classes)
     tag.i(class: classes.join(" "))
   end
@@ -23,5 +19,13 @@ module ApplicationHelper
 
   def tablet_pc?
     !!smartphone?
+  end
+
+  def ago(time)
+    TimeDifference.ago(time)
+  end
+
+  def ago_if_datetime(val)
+    val.is_a?(Time) ? ago(val) : val
   end
 end

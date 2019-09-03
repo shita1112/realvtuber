@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def notifications
-    @_notifications ||= current_user.notifications.unread.preload(work: :trained_model)
+    @_notifications ||= current_user.notifications.unread.preload(work: :trained_model).order(created_at: :desc)
   end
 
   def notifications_count

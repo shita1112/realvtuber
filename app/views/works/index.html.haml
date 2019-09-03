@@ -1,4 +1,10 @@
 - title "作成した動画"
 
+
 %h1.h1-responsive.my-4 作成した動画
-= render "works", works: @works
+%ul.list-unstyled
+  = render partial: "work", collection: @works, spacer_template: "spacer"
+
+= paginate @works
+
+

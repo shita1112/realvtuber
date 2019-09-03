@@ -1,0 +1,29 @@
+- title "ダッシュボード"
+
+%h1.h1-responsive.my-4 ダッシュボード
+
+%h2.h2-responsive @works
+%table.table.table-striped.table-bordered.table-sm
+  %tr
+    %th id
+    %th df_image
+    %th comparison_image
+    %th completed_at
+    %th created_at
+  - @works.each do |work|
+    %tr
+      - if work.completed?
+        %td= link_to work.id, work
+        %td= image_tag work.df_image.url, class: "h-200px"
+        %td= image_tag work.comparison_image.url, class: "h-200px"
+        %td= ago work.completed_at
+        %td= ago work.created_at
+      - else
+        %td= work.id
+        %td
+        %td
+        %td
+        %td= ago work.created_at
+
+= render "table", h2: "@jobs", objects: @jobs, columns: %i[id work_id last_error created_at]
+= render "table", h2: "@users", objects: @users, columns: %i[id email created_at]

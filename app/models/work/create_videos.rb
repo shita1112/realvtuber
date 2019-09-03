@@ -4,8 +4,12 @@ class Work
   module CreateVideos
     include Rake::FileUtilsExt
 
-    # 通常動画はお試し程度にしておいて、高品質動画は別で用意する
-    TRAIN_TIME = 15.minutes
+    # TRAIN_TIME  = 1.minutes # テスト用
+    TRAIN_TIME = 50.minutes # 90%(そこそこのクオリティ)
+    # TRAIN_TIME = 20.minutes # 80%(十分行けるレベル。キューが貯まる場合は、こっちにする)
+
+    TOTAL_MINUTES = 60
+
     DETECTOR = "mtcnn"
     SAVE_INTERVAL = 50
     GPUS = 1
@@ -29,6 +33,7 @@ class Work
       mkdirs
       copy_models
       download_video
+      normalize_video
     end
 
     def set_pathname
@@ -43,11 +48,14 @@ class Work
       @a_faces               = @work.join("a_faces")
       @df                    = @work.join("df")
       @comparison            = @work.join("comparison")
+      @original_video_pre    = @work.join(filename)
       @original_video        = @work.join("realvtuber_original.mp4")
+      @original_video2       = @work.join("realvtuber_original2.mp4")
       @df_video_pre          = @work.join("realvtuber_df_pre.mp4")
-      @df_video              = @work.join("realvtuber_df.mp4")
-      @comparison_video_pre  = @work.join("realvtuber_comparison_pre.mp4")
-      @comparison_video      = @work.join("realvtuber_comparison.mp4")
+      @df_video              = @work.join("realvtuber_df_pre2.mp4")
+      @df_video2             = @work.join("realvtuber.mp4")
+      @comparison_video      = @work.join("realvtuber_comparison_pre.mp4")
+      @comparison_video2     = @work.join("realvtuber_comparison.mp4")
     end
 
     def clean_dir
@@ -67,8 +75,12 @@ class Work
     end
 
     def download_video
-      video = open(original_video.url).read
-      File.write(@original_video, video, mode: "wb")
+      video = original_video.read
+      File.write(@original_video_pre, video, mode: "wb")
+    end
+
+    def normalize_video
+      BaseCommand.simple_run("ffmpeg -i #{@original_video_pre} -movflags faststart -pix_fmt yuv420p -strict -2 #{@original_video}")
     end
 
     def extract
@@ -111,7 +123,8 @@ class Work
                       when 3..16    then 2
                       when 17..32   then 8
                       when 33..64   then 16
-                      when 65..     then 24
+                      # when 65..     then 24
+                      when 65..     then 22
                       end
       when trained_model.unbalanced?
         @batch_size = case face_count
@@ -121,13 +134,13 @@ class Work
                       when 17..32   then 8
                       when 33..64   then 16
                       when 65..80   then 32
-                      when 81..     then 55
+                      # when 81..     then 55
+                      when 81..     then 50
                       end
       end
     end
 
     def train_model
-      puts "start train"
       FaceswapPy.train_with_timeout(
         TRAIN_TIME,
         "--input-A", @a_faces,
@@ -160,8 +173,10 @@ class Work
       set_merge_variables
       merge_df_video
 
-      create_comparison_images
-      merge_comparison_video
+      # retry_on_error { create_comparison_images }
+      # merge_comparison_video
+
+      create_comparison_video
     end
 
     def set_merge_variables
@@ -179,37 +194,55 @@ class Work
         "--mux-audio"
       )
 
-      system("ffmpeg -i #{@df_video_pre} -movflags faststart -pix_fmt yuv420p -strict -2 #{@df_video}")
+      BaseCommand.simple_run("ffmpeg -i #{@df_video_pre} -movflags faststart -pix_fmt yuv420p -strict -2 #{@df_video}")
     end
 
-    def create_comparison_images
-      @original_files.zip(@df_files).each.with_index(1) do |(original_file, df_file), i|
-        MiniMagick::Tool::Montage.new do |command|
-          command << "-pointsize" << "60"
-          command << "-font" << @font.to_s
-          command << "-label" << "オリジナル" << original_file
-          command << "-label" << "リアルバーチャルYoutuber" << df_file
-          command << "-background" << "white"
-          command << "-geometry" << "+0+0"
-          command << @comparison + ("%05d.png" % i)
-        end
-      end
+    # def create_comparison_images
+    #   @original_files.zip(@df_files).each.with_index(1) do |(original_file, df_file), i|
+    #     MiniMagick::Tool::Montage.new do |command|
+    #       command << "-pointsize" << "60"
+    #       command << "-font" << @font.to_s
+    #       command << "-label" << "オリジナル" << original_file
+    #       command << "-label" << "リアルバーチャルYoutuber" << df_file
+    #       command << "-background" << "white"
+    #       command << "-geometry" << "+0+0"
+    #       command << @comparison + ("%05d.png" % i)
+    #     end
+    #   end
 
-      @comparison_files = Dir[@comparison.join("*.png")].sort
-    end
+    #   @comparison_files = Dir[@comparison.join("*.png")].sort
+    # end
 
-    def merge_comparison_video
-      FaceswapPy.effmpeg(
-        "--action", "gen-vid",
-        "--input", @comparison.to_s,
-        "--output", @comparison_video_pre,
-        "--fps", "25",
-        "--reference-video", @original_video,
-        "--mux-audio"
-      )
+    # def merge_comparison_video
+    #   FaceswapPy.effmpeg(
+    #     "--action", "gen-vid",
+    #     "--input", @comparison.to_s,
+    #     "--output", @comparison_video,
+    #     "--fps", "25",
+    #     "--reference-video", @original_video,
+    #     "--mux-audio"
+    #   )
 
+    #   movie = FFMPEG::Movie.new(@df_video.to_s)
+    #   system("ffmpeg -i #{@comparison_video} -movflags faststart -pix_fmt yuv420p -strict -2 -vf 'scale=w=#{movie.width}:h=#{movie.height}:force_original_aspect_ratio=1,pad=#{movie.width}:#{movie.height}:(ow-iw)/2:(oh-ih)/2' #{@comparison_video}")
+    # end
+
+    def create_comparison_video
       movie = FFMPEG::Movie.new(@df_video.to_s)
-      system("ffmpeg -i #{@comparison_video_pre} -movflags faststart -pix_fmt yuv420p -strict -2 -vf 'scale=w=#{movie.width}:h=#{movie.height}:force_original_aspect_ratio=1,pad=#{movie.width}:#{movie.height}:(ow-iw)/2:(oh-ih)/2' #{@comparison_video}")
+      fontsize = movie.width / 20
+
+      BaseCommand.simple_run(%[ffmpeg -i #{@original_video} -vf drawtext="fontfile=#{@font}: text='オリジナル': fontcolor=white: fontsize=#{fontsize}: box=1: boxcolor=black@0.9: boxborderw=14: x=(w-text_w)/2: y=(h-text_h)/1.1" -movflags faststart -pix_fmt yuv420p -strict -2 -codec:a copy #{@original_video2}])
+      BaseCommand.simple_run(%[ffmpeg -i #{@df_video} -vf drawtext="fontfile=#{@font}: text='リアルバーチャルYoutuber': fontcolor=white: fontsize=#{fontsize}: box=1: boxcolor=black@0.9: boxborderw=14: x=(w-text_w)/2: y=(h-text_h)/1.1" -movflags faststart -pix_fmt yuv420p -strict -2 -codec:a copy #{@df_video2}])
+      BaseCommand.simple_run(%(ffmpeg -i #{@original_video2} -i #{@df_video2} -filter_complex "[0:0]pad=2*iw[a];[a][1:0]overlay=w" -strict -2 #{@comparison_video}))
+      BaseCommand.simple_run(%[ffmpeg -i #{@comparison_video} -movflags faststart -pix_fmt yuv420p -strict -2 -vf 'scale=w=#{movie.width}:h=#{movie.height}:force_original_aspect_ratio=1,pad=#{movie.width}:#{movie.height}:(ow-iw)/2:(oh-ih)/2' #{@comparison_video2}])
+
+      FaceswapPy.effmpeg(
+        "--action", "extract",
+        "--input", @comparison_video2,
+        "--output", @comparison,
+        "--fps", "1"
+      )
+      @comparison_files = Dir[@comparison.join("*.png")].sort
     end
 
     def cleanup
@@ -217,7 +250,6 @@ class Work
       create_notification
 
       # work_rmtree # debugのため、しばらくコメントアウト
-      puts_finish
     end
 
     def update_self
@@ -225,7 +257,7 @@ class Work
         completed_at: Time.current,
         df_video: File.open(@df_video),
         df_image: File.open(@df_files[0]),
-        comparison_video: File.open(@comparison_video),
+        comparison_video: File.open(@comparison_video2),
         comparison_image: File.open(@comparison_files[0]),
       )
     end
@@ -238,8 +270,18 @@ class Work
       @work.rmtree
     end
 
-    def puts_finish
-      puts "finish"
+    def retry_on_error(times: 3)
+      try = 0
+      begin
+        try += 1
+        yield
+      rescue => e
+        puts "retry_on_error"
+        puts e.full_message
+        sleep 60
+        retry if try < times
+        raise
+      end
     end
   end
 end

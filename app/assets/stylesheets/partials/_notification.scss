@@ -1,0 +1,10 @@
+.notification-container {
+  position: relative;
+}
+
+.counter-bell {
+  position: absolute;
+  left: 55px;
+  top: 5px !important;
+  z-index: 2;
+}

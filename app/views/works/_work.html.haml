@@ -1,6 +1,43 @@
-.my-2
-= link_to work, class: "waves-effect" do
-  %li.media
-    = image_tag work.df_image.url, class: "d-flex mr-3"
-    .media-body.text-dark
+- case
+- when work.completed?
+  = link_to work, class: "waves-effect w-100 text-dark" do
+    .row
+      .col-12.col-md-5
+        = image_tag work.df_image.url, class: "w-100"
+      .col-12.col-md-7
+        = render 'work_detail', work: work
+
+- when work.working?
+  .row
+    .col-12.col-md-5
+      .view
+        = image_tag "creating.png", class: "w-100"
+        .mask.rgba-grey-strong
+    .col-12.col-md-7
+      %dl.m-0
+        %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
       = render 'work_detail', work: work
+
+- when work.pending?
+  .row
+    .col-12.col-md-5
+      .view
+        = image_tag "pending.png", class: "w-100"
+        .mask.rgba-grey-strong
+    .col-12.col-md-7
+      %dl.m-0
+        %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
+        %dd.m-0.red-text 作成待ち順番：#{work.nth_job_text}
+      = render 'work_detail', work: work
+
+- when work.failed?
+  .row
+    .col-12.col-md-5
+      .view
+        = image_tag "failed.png", class: "w-100"
+        .mask.rgba-grey-strong
+    .col-12.col-md-7
+      %p.red-text 動画作成に失敗しました。申し訳ありませんが、別の動画でもう一度お試しください。繰り返しエラーが出る場合は、お手数ですが管理者までご連絡ください。
+      = render 'work_detail', work: work
+
+

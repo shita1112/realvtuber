@@ -70,4 +70,6 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.add_footer = true
   end
+
+  config.hosts << /[a-z0-9]+\.ngrok\.io/ # ngrokを許可
 end

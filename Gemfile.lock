@@ -72,6 +72,18 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     ast (2.4.0)
     awesome_print (1.8.0)
+    aws-eventstream (1.0.3)
+    aws-partitions (1.210.0)
+    aws-sdk-cloudfront (1.22.0)
+      aws-sdk-core (~> 3, >= 3.61.1)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-core (3.66.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     bindex (0.8.1)
     binding_of_caller (0.8.0)
@@ -195,6 +207,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ipaddress (0.8.3)
     jaro_winkler (1.5.3)
+    jmespath (1.4.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -382,6 +395,8 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    time_difference (0.5.0)
+      activesupport
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
@@ -412,6 +427,7 @@ DEPENDENCIES
   active_decorator
   active_hash
   awesome_print
+  aws-sdk-cloudfront
   bootsnap (>= 1.4.2)
   browser
   bullet
@@ -457,6 +473,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   streamio-ffmpeg
   tapp
+  time_difference
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
   xray-rails
