@@ -1,0 +1,9 @@
+- case
+- when content_for?(:h1)
+  .h1-bg-color.white-text.z-depth-1
+    .container
+      %h1.h2-responsive.my-3= yield :h1
+- when content_for?(:h1_text_only)
+  .h1-bg-color.white-text.z-depth-1
+    .text-only
+      %h1.h2-responsive.my-3= yield :h1_text_only

@@ -1,13 +1,14 @@
-- title @work.filename
+- title "動画のダウンロード - #{@work.filename}"
+- h1 "動画のダウンロード"
 
 %nav
   %ol.breadcrumb
-    %li.breadcrumb-item= link_to "作成した動画", :works
+    %li.breadcrumb-item= link_to "動画一覧", :works
     %li.breadcrumb-item.active 動画のダウンロード
 
 .row.justify-content-center
   .col-12.col-md-6.mt-3
-    %h2.h2-responsive 作成した動画
+    %h2.h4-responsive 作成した動画
     .card
       .view
         = image_tag @work.df_image.url, class: "card-img-top"
@@ -15,7 +16,7 @@
         = link_to "ダウンロード", @work.df_video.url, class: "btn btn-primary btn-block"
 
   .col-12.col-md-6.mt-3
-    %h2.h2-responsive 比較動画
+    %h2.h4-responsive 比較動画
     .card
       .view
         = image_tag @work.comparison_image.url, class: "card-img-top"
@@ -24,7 +25,6 @@
 
   .col-12
     %hr.my-4
-    %h2.h2-responsive 詳細
     = render 'work_detail', work: @work
     .my-2
     = link_to "動画を削除する", @work, method: :delete, class: "btn btn-outline-danger", data: { confirm: "この操作は取り消せません。本当に削除しますか？"}

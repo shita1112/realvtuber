@@ -1,9 +1,8 @@
 - title "作成した動画"
+- h1 "作成した動画"
 
-
-%h1.h1-responsive.my-4 作成した動画
 .row
-  = render partial: "work", collection: @works, spacer_template: "spacer"
+  = render @works
 
 = paginate @works
 

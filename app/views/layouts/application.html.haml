@@ -14,7 +14,8 @@
 
   %body
     = render_navbar
-    .container.content
+    = render "h1"
+    .main.container.mt-3
       = render "flash_message"
       = yield
     = render "footer"

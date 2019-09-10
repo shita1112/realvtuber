@@ -1,9 +1,8 @@
-%header.mb-3
-  %nav.navbar
+%header
+  %nav.navbar{class: z_depth_0_if_h1}
     .container.p-0-if-smartphone
       = link_to root_path, class: "navbar-brand mr-0" do
-        .waves-effect
-          = image_tag "inversed_logo.png", alt: "ロゴ"
+        = image_tag "inversed_logo.png", alt: "ロゴ"
 
       .text-right
         - if user_signed_in?

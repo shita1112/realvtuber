@@ -1,11 +1,6 @@
 - title "動画を作る"
+- h1 "動画を作る"
 
-%h1.h1-responsive.my-4.mr-1.d-inline-block 動画を作る
-
--# モーダルボタン
-= link_to "", "data-target" => "#hint_modal", "data-toggle" => "modal" do
-  = icon("fas", "fa-question-circle")
-  上手に作るには？
 
 %main
   = form_with model: @work, local: true do |f|
@@ -28,10 +23,15 @@
               %dd.m-0 動画の長さ：最大1分まで
               %dd.m-0 ファイルサイズ：最大10MBまで
               %dd.m-0
+                -# モーダルボタン
+                = link_to "", "data-target" => "#hint_modal", "data-toggle" => "modal" do
+                  = icon("fas", "fa-question-circle")
+                  上手に作るには？
+
+              %dd.m-0
                 = link_to order_path, target: "_blank" do
                   = icon("fas", "fa-question-circle")
                   1分・10MB以上の動画を作るには？
-
 
       .d-flex.mb-1
         .my-stepper-left.d-flex.flex-column.align-items-center

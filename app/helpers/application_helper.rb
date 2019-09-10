@@ -41,4 +41,16 @@ module ApplicationHelper
       render "navbar"
     end
   end
+
+  def h1(title)
+    content_for(:h1, title)
+  end
+
+  def h1_text_only(title)
+    content_for(:h1_text_only, title)
+  end
+
+  def z_depth_0_if_h1
+    "z-depth-0" if content_for?(:h1) || content_for?(:h1_text_only)
+  end
 end
