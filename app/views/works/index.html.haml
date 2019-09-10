@@ -2,7 +2,7 @@
 
 
 %h1.h1-responsive.my-4 作成した動画
-%ul.list-unstyled
+.row
   = render partial: "work", collection: @works, spacer_template: "spacer"
 
 = paginate @works

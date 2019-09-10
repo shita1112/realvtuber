@@ -1,43 +1,46 @@
 - case
 - when work.completed?
-  = link_to work, class: "waves-effect w-100 text-dark" do
-    .row
-      .col-12.col-md-5
-        = image_tag work.df_image.url, class: "w-100"
-      .col-12.col-md-7
-        = render 'work_detail', work: work
+  .col-12.col-md-4.mb-3
+    = link_to work, class: "text-dark" do
+      .card
+        .view.pointer
+          = image_tag work.df_image.url, class: "card-img-top"
+        .card-body.m-0.p-4
+          .card-title.m-0
+            = render 'work_detail', work: work
 
 - when work.working?
-  .row
-    .col-12.col-md-5
+  .col-12.col-md-4.mb-3
+    .card
       .view
-        = image_tag "creating.png", class: "w-100"
+        = image_tag "creating.png", class: "card-img-top"
         .mask.rgba-grey-strong
-    .col-12.col-md-7
-      %dl.m-0
-        %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
-      = render 'work_detail', work: work
+      .card-body.m-0.p-4
+        .card-title.m-0
+          %dl.m-0
+            %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
+          = render 'work_detail', work: work
 
 - when work.pending?
-  .row
-    .col-12.col-md-5
+  .col-12.col-md-4.mb-3
+    .card
       .view
-        = image_tag "pending.png", class: "w-100"
+        = image_tag "pending.png", class: "card-img-top"
         .mask.rgba-grey-strong
-    .col-12.col-md-7
-      %dl.m-0
-        %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
-        %dd.m-0.red-text 作成待ち順番：#{work.nth_job_text}
-      = render 'work_detail', work: work
+      .card-body.m-0.p-4
+        .card-title.m-0
+          %dl.m-0
+            %dd.m-0.red-text 完成予定時刻：#{work.wait_time_text}
+            %dd.m-0.red-text 作成待ち順番：#{work.nth_job_text}
+          = render 'work_detail', work: work
 
 - when work.failed?
-  .row
-    .col-12.col-md-5
+  .col-12.col-md-4.mb-3
+    .card
       .view
-        = image_tag "failed.png", class: "w-100"
+        = image_tag "failed.png", class: "card-img-top"
         .mask.rgba-grey-strong
-    .col-12.col-md-7
-      %p.red-text 動画作成に失敗しました。申し訳ありませんが、別の動画でもう一度お試しください。繰り返しエラーが出る場合は、お手数ですが管理者までご連絡ください。
-      = render 'work_detail', work: work
-
-
+      .card-body.m-0.p-4
+        .card-title.m-0
+          %p.red-text 動画作成に失敗しました。申し訳ありませんが、別の動画でもう一度お試しください。繰り返しエラーが出る場合は、お手数ですが管理者までご連絡ください。
+          = render 'work_detail', work: work

@@ -11,7 +11,7 @@ class Work < ApplicationRecord
   mount_uploader :df_image, ImageUploader
   mount_uploader :comparison_image, ImageUploader
 
-  paginates_per 10
+  paginates_per 12
 
   belongs_to :user
   belongs_to :trained_model
