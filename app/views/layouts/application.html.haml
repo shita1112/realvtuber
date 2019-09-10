@@ -13,7 +13,7 @@
     = analytics_init if Rails.env.production?
 
   %body
-    = render "navbar"
+    = render_navbar
     .container.content
       = render "flash_message"
       = yield
