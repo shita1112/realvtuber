@@ -1,0 +1,5 @@
+.text-only{
+  @extend .container;
+  max-width: 680px;
+  line-height: 1.8;
+}
