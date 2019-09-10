@@ -6,7 +6,7 @@
 
       .text-right
         - if user_signed_in?
-          = link_to "動画作成", new_work_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"
+          = link_to "動画作成", new_work_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone z-depth-0", role: "button"
 
           .dropdown.d-inline-block
             %button.dropdown-toggle.btn-floating.btn-floating-border.waves-effect.btn-sm{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}= icon("fas", "fa-user")
@@ -20,5 +20,5 @@
 
           = render "notifications/notifications"
         - else
-          = link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"
-          = link_to "ユーザー登録", new_registration_path(:user), class: "btn btn-primary waves-effect font-weight-bold btn-xs-if-smartphone", role: "button"
+          = link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary waves-effect font-weight-bold btn-xs-if-smartphone z-depth-0", role: "button"
+          = link_to "ユーザー登録", new_registration_path(:user), class: "btn btn-primary waves-effect font-weight-bold btn-xs-if-smartphone z-depth-0", role: "button"

@@ -13,7 +13,7 @@
           .line.h-100
         .my-stepper-right.w-100
           .ml-2.font-weight-bold ベースとなる動画をアップロードする
-          .my-stepper-content.my-4.w-100
+          .my-stepper-content.my-4.w-100.pl-4.p-0-if-smartphone
             -# .col-12.col-md-6
             .file-upload-wrapper.my-2
               = f.file_field :original_video, class: "file-upload wh-0", data: {"max-file-size" => "10M", "allowed-file-extensions" => %i(mp4 mov), "default-file" => f.object.original_video.url }, required: true, accept: "video/*"
@@ -39,7 +39,7 @@
           .line.h-100
         .my-stepper-right.w-100
           .ml-2.font-weight-bold なりたい顔を選ぶ
-          .my-stepper-content.my-4.mx-2
+          .my-stepper-content.my-4.mx-2.pl-4.p-0-if-smartphone
             .row
               - @trained_models.each do |trained_model|
                 .col-4.col-md-2.p-1
@@ -59,8 +59,8 @@
           .h-100
         .my-stepper-right.w-100
           .ml-2.font-weight-bold 動画を作る
-          .my-stepper-content.my-4
-            .text-right= f.submit "動画を作る", class: "btn btn-primary btn-lg"
+          .my-stepper-content.my-4.pl-4.p-0-if-smartphone
+            = f.submit "動画を作る", class: "btn btn-primary btn-lg"
 
 -# モーダルダイアログ(解説)
 #hint_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "hint_modal_label", :role => "dialog", :tabindex => "-1"}
