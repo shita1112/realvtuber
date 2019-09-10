@@ -4,6 +4,9 @@
 .font-75{
   font-size: 75%;
 }
+.font-85{
+  font-size: 85%;
+}
 .font-150{
   font-size: 150%;
 }
@@ -19,8 +22,9 @@
 .w-60 {
   width: 60%;
 }
-.w-85 {
+.wh-85 {
   width: 85%;
+  height: 85%;
 }
 .wh-100px {
   width: 100px;
@@ -45,6 +49,9 @@
 .readable-long-text {
   line-height: 1.8;
 }
-.box-shadow-0 {
-  box-shadow: 0 0 !important;
+.border-top-0 {
+  border-top: 0;
+}
+.border-dotted {
+  border-style: dotted;
 }
