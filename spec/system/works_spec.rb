@@ -41,7 +41,6 @@ RSpec.describe "Works", type: :system do
       attach_file "work_original_video", support("df.mp4"), visible: false
       find("label[for=work_trained_model_id_#{trained_model.id}]").click
       click_on "動画を作る"
-
       expect(page).to have_content "動画作成を受け付けました。"
     end
   end

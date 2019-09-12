@@ -19,7 +19,8 @@
               = f.file_field :original_video, class: "file-upload wh-0", data: {"max-file-size" => "10M", "allowed-file-extensions" => %i(mp4 mov), "default-file" => f.object.original_video.url }, required: true, accept: "video/*"
               = f.hidden_field :original_video_cache
             %dl.text-muted.font-75
-              %dd.m-0.red-text ネガネをされている方は、メガネを外すとより自然な動画ができます。
+              %dd.m-0.red-text メガネは外してください。
+              %dd.m-0.red-text 登場人物は一人にしてください。
               %dd.m-0 動画の長さ：最大1分まで
               %dd.m-0 ファイルサイズ：最大10MBまで
               %dd.m-0
@@ -72,11 +73,11 @@
         %ul.list-group.list-group-flush
           %li.list-group-item.border-dotted.px-0
             メガネは外してください。
-            .text-muted.font-85 メガネ・マスク等で顔が隠れていると、うまくいかないことがあります。
+            .text-muted.font-85 メガネや髪で顔が隠れていると不自然な仕上がりになることがあります。
+          %li.list-group-item.border-dotted.px-0.border-top-0 登場人物は一人にしてください。
           %li.list-group-item.border-dotted.px-0
             できるだけ正面を向いてください。
-            .text-muted.font-85 少し横を向く程度なら問題ありません。
-          %li.list-group-item.border-dotted.px-0.border-top-0 登場人物は一人にしてください。
+            .text-muted.font-85 横を向いたり、カメラに近づきすぎたりすると顔を検出できないことがあります。
         .text-center.grey.white-text.py-1 ご確認
         %ul.list-group.list-group-flush
           %li.list-group-item.border-dotted.px-0 動画の長さは最大1分までです。
