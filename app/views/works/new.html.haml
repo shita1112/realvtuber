@@ -28,11 +28,6 @@
                   = icon("fas", "fa-question-circle")
                   上手に作るには？
 
-              %dd.m-0
-                = link_to order_path, target: "_blank" do
-                  = icon("fas", "fa-question-circle")
-                  1分・10MB以上の動画を作るには？
-
       .d-flex.mb-1
         .my-stepper-left.d-flex.flex-column.align-items-center
           .rounded-circle.px-2.bg-primary.text-white.mb-1 2
@@ -75,18 +70,22 @@
       .modal-body
         .text-center.grey.white-text.py-1 コツ・ポイント
         %ul.list-group.list-group-flush
-          %li.list-group-item.border-dotted.px-0.border-top-0 登場人物は一人にしてください。
+          %li.list-group-item.border-dotted.px-0
+            メガネは外してください。
+            -# .text-muted.font-85 メガネ・マスク等で顔が隠れていると、うまくいかないことがあります。
           %li.list-group-item.border-dotted.px-0
             できるだけ正面を向いてください。
-            .text-muted.font-85 少し横を向く程度なら問題ありません。
-          %li.list-group-item.border-dotted.px-0
-            できるだけ顔を隠さないでください。
-            .text-muted.font-85 メガネ・マスク等をしているとうまくいかないことがあるので、外してください。
+            -# .text-muted.font-85 少し横を向く程度なら問題ありません。
+          %li.list-group-item.border-dotted.px-0.border-top-0 登場人物は一人にしてください。
         .text-center.grey.white-text.py-1 ご確認
         %ul.list-group.list-group-flush
           %li.list-group-item.border-dotted.px-0.border-top-0 サポートしているファイルフォーマットはMP4・MOVです。
           %li.list-group-item.border-dotted.px-0 動画の長さは最大1分までです。
           %li.list-group-item.border-dotted.px-0 ファイルサイズは最大10MBまでです。
+          %li.list-group-item.border-dotted.px-0
+            = link_to order_path, target: "_blank" do
+              = icon("fas", "fa-question-circle")
+              1分・10MB以上の動画を作るには？
       .modal-footer
         %button.btn.btn-outline-primary{type: "button", "data-dismiss": "modal"} 閉じる
 
