@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Orders", type: :system do
   describe "GET /order" do
-    let(:user) { create(:user) }
+    let!(:user) { create(:user) }
     before do
       sign_in(user)
       visit order_path

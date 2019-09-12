@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Home", type: :system do
   describe "GET /" do
-    let(:user) { create(:user) }
+    let!(:user) { create(:user) }
 
     context "when logged in" do
       before do

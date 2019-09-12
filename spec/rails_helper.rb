@@ -63,12 +63,28 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers
+  config.include ActiveJob::TestHelper
 
   config.before(:each) do |example|
-    if example.metadata[:js]
+    case
+    when example.metadata[:js]
       driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+    when example.metadata[:head]
+      driven_by :selenium_chrome, screen_size: [1400, 1400]
     else
       driven_by :rack_test
     end
+  end
+
+  def support(file)
+    "#{Rails.root}/spec/support/#{file}"
+  end
+
+  def video
+    @video ||= File.open(support("df.mp4"))
+  end
+
+  def image
+    @image ||= File.open(support("df.png"))
   end
 end
