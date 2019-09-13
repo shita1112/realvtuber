@@ -65,15 +65,16 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers
   config.include ActiveJob::TestHelper
 
-  config.before(:each) do |example|
-    case
-    when example.metadata[:js]
-      driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
-    when example.metadata[:head]
-      driven_by :selenium_chrome, screen_size: [1400, 1400]
-    else
-      driven_by :rack_test
-    end
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+  end
+
+  config.before(:each, type: :system, head: true) do
+    driven_by :selenium_chrome, screen_size: [1400, 1400]
+  end
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
   end
 
   def support(file)
