@@ -12,6 +12,5 @@ RSpec.describe Work::Callbacks, type: :model do
       callback.before_create(work)
       expect(work.uuid).to match(/[\w-]{36}/)
     end
-
   end
 end

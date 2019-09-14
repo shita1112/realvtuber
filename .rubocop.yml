@@ -9,6 +9,7 @@ AllCops:
   Exclude:
     - "bin/bundle"
     - "node_modules/**/*"
+    - "db/schema.rb"
 
 Layout/IndentationConsistency:
   EnforcedStyle: normal

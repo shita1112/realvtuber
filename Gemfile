@@ -61,10 +61,10 @@ group :development do
 end
 
 group :test do
-  gem "factory_bot_rails"
   gem "capybara"
-  gem 'webdrivers'
+  gem "factory_bot_rails"
   gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 group :development, :test do
@@ -74,5 +74,3 @@ end
 group :production do
   gem "rails_12factor"
 end
-
-
