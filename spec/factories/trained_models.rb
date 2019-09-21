@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :trained_model do
-    name { "white_woman" }
-    display_name { "白人女性" }
-    face_image { Rack::Test::UploadedFile.new(support("face_image.png"), "image/jpeg") }
-    trainer { "villain" }
+    sequence(:name) {|n| "name_#{n}" }
+    sequence(:display_name) {|n| "display_name_#{n}" }
+    face_image { File.open(support("face_image.png")) }
+    trainer { TrainedModel.trainers.keys.sample }
   end
 end

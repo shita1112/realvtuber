@@ -4,11 +4,9 @@ require "rails_helper"
 
 RSpec.describe Work, type: :model do
   context "scopes" do
-    describe ".completed" do
-      let!(:user) { create(:user) }
-      let!(:trained_model) { create(:trained_model) }
-      let!(:uncompleted_work) { create(:work, user: user, trained_model: trained_model, completed_at: nil) }
-      let!(:completed_work) { create(:work, user: user, trained_model: trained_model, completed_at: Time.current) }
+    describe "completed" do
+      let!(:uncompleted_work) { create(:work, completed_at: nil) }
+      let!(:completed_work) { create(:work, completed_at: Time.current) }
 
       it "includes completed_works" do
         expect(Work.completed).to include completed_work
@@ -19,11 +17,9 @@ RSpec.describe Work, type: :model do
       end
     end
 
-    describe ".uncompleted" do
-      let!(:user) { create(:user) }
-      let!(:trained_model) { create(:trained_model) }
-      let!(:uncompleted_work) { create(:work, user: user, trained_model: trained_model, completed_at: nil) }
-      let!(:completed_work) { create(:work, user: user, trained_model: trained_model, completed_at: Time.current) }
+    describe "uncompleted" do
+      let!(:uncompleted_work) { create(:work, completed_at: nil) }
+      let!(:completed_work) { create(:work, completed_at: Time.current) }
 
       it "includes uncompleted_works" do
         expect(Work.uncompleted).to include uncompleted_work
@@ -44,7 +40,7 @@ RSpec.describe Work, type: :model do
       end
     end
 
-    context "when completed_at isn't nil" do
+    context "when completed_at is Time.current" do
       let!(:work) { Work.new(completed_at: Time.current) }
 
       it "is completed" do

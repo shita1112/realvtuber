@@ -13,15 +13,6 @@ class Work
       scope :unfailed,    -> { joins(:job).merge(::Delayed::Job.unfailed) }
     end
 
-    # 0から
-    def nth_job
-      @nth_job ||= Work.unfailed.index(self)
-    end
-
-    def wait_minutes
-      Work::TOTAL_MINUTES * (nth_job / JOB_QUEUE_COUNT + 1)
-    end
-
     def nth_job_text
       "#{nth_job + 1}番目"
     end
@@ -34,10 +25,6 @@ class Work
       text << "#{minutes}分" if minutes != 0
       text << "後"
       text.join
-    end
-
-    def nth_and_wait_time_text
-      "#{nth_text}（#{wait_time_text}）"
     end
 
     def failed?
@@ -58,6 +45,17 @@ class Work
 
     def totally_failed?
       failed? || job.nil?
+    end
+
+    private
+
+    # 0から
+    def nth_job
+      @nth_job ||= Work.unfailed.index(self)
+    end
+
+    def wait_minutes
+      Work::TOTAL_MINUTES * (nth_job / JOB_QUEUE_COUNT + 1)
     end
   end
 end

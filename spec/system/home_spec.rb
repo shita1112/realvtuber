@@ -4,26 +4,20 @@ require "rails_helper"
 
 RSpec.describe "Home", type: :system do
   describe "GET /" do
-    let!(:user) { create(:user) }
+    context "when signed in" do
+      include_context "sign in"
+      before { visit root_url }
 
-    context "when logged in" do
-      before do
-        sign_in(user)
-        visit root_url
-      end
-
-      it "isn't be landing page" do
+      it 'does not have "リアルバーチャルYoutuber"' do
         expect(page).not_to have_content "リアルバーチャルYoutuber"
       end
     end
 
-    context "when logged out" do
-      before do
-        sign_out(user)
-        visit root_url
-      end
+    context "when signed out" do
+      include_context "sign out"
+      before { visit root_url }
 
-      it "is landing page" do
+      it 'shows "リアルバーチャルYoutuber"' do
         expect(page).to have_content "リアルバーチャルYoutuber"
       end
     end
@@ -32,7 +26,7 @@ RSpec.describe "Home", type: :system do
   describe "GET /contact" do
     before { visit contact_path }
 
-    it "is contact page" do
+    it 'shows "お問い合わせ"' do
       expect(page).to have_content "お問い合わせ"
     end
   end
@@ -40,7 +34,7 @@ RSpec.describe "Home", type: :system do
   describe "GET /disclaimer" do
     before { visit disclaimer_path }
 
-    it "is disclaimer page" do
+    it 'shows "免責事項"' do
       expect(page).to have_content "免責事項"
     end
   end
@@ -48,7 +42,7 @@ RSpec.describe "Home", type: :system do
   describe "GET /policy" do
     before { visit policy_path }
 
-    it "is privacy policy page" do
+    it 'shows "プライバシーポリシー"' do
       expect(page).to have_content "プライバシーポリシー"
     end
   end

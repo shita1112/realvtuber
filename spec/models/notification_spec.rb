@@ -4,12 +4,9 @@ require "rails_helper"
 
 RSpec.describe Notification, type: :model do
   context "scopes" do
-    describe ".unread" do
-      let!(:user) { create(:user) }
-      let!(:trained_model) { create(:trained_model) }
-      let!(:work) { create(:work, user: user, trained_model: trained_model) }
-      let!(:unread_notification) { create(:notification, work: work, read: false) }
-      let!(:read_notification) { create(:notification, work: work, read: true) }
+    describe "unread" do
+      let!(:unread_notification) { create(:notification, read: false) }
+      let!(:read_notification) { create(:notification, read: true) }
 
       it "includes unread_notifications" do
         expect(Notification.unread).to include unread_notification

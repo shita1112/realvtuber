@@ -3,28 +3,28 @@
 require "rails_helper"
 
 RSpec.describe "Notifications", type: :system do
-  let!(:user) { create(:user) }
-  let!(:trained_model) { create(:trained_model) }
-  let!(:work) { create(:work, trained_model: trained_model, user: user) }
-  before do
-    sign_in(user)
-    create(:notification, work: work)
-  end
+  include_context "sign in"
+  let!(:work) { create(:work, user: current_user) }
+  before { create(:notification, work: work) }
 
   describe "show a notification" do
-    it 'displays "動画のダウンロード"' do
+    before do
       visit root_path
       click_on("動画作成が完了しました。")
+    end
 
+    it 'shows "動画のダウンロード"' do
       expect(page).to have_content "動画のダウンロード"
     end
   end
 
   describe "update a notification" do
-    it 'displays "全ての通知を既読にしました。"' do
+    before do
       visit root_path
       click_on("全ての通知を既読にする")
+    end
 
+    it 'shows "全ての通知を既読にしました。"' do
       expect(page).to have_content "全ての通知を既読にしました。"
     end
   end

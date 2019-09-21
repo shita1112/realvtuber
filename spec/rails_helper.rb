@@ -7,6 +7,8 @@ require File.expand_path("../config/environment", __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
+require_relative "./support/sign_in"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -65,17 +67,18 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers
   config.include ActiveJob::TestHelper
 
-  config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+  config.before(:each, type: :system) do |example|
+    case
+    when example.metadata[:js]
+      driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    when example.metadata[:head]
+      driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+    else
+      driven_by :rack_test
+    end
   end
 
-  config.before(:each, type: :system, head: true) do
-    driven_by :selenium_chrome, screen_size: [1400, 1400]
-  end
-
-  config.before(:each, type: :system) do
-    driven_by :rack_test
-  end
+  Faker::Config.locale = :ja
 
   def support(file)
     "#{Rails.root}/spec/support/#{file}"

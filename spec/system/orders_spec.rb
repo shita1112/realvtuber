@@ -4,13 +4,10 @@ require "rails_helper"
 
 RSpec.describe "Orders", type: :system do
   describe "GET /order" do
-    let!(:user) { create(:user) }
-    before do
-      sign_in(user)
-      visit order_path
-    end
+    include_context "sign in"
+    before { visit order_path }
 
-    it "is order page" do
+    it 'shows "高品質な動画を作る・顔を作る"' do
       expect(page).to have_content "高品質な動画を作る・顔を作る"
     end
   end
