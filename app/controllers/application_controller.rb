@@ -30,11 +30,11 @@ class ApplicationController < ActionController::Base
   end
 
   def notifications
-    @_notifications ||= current_user.notifications.unread.preload(work: :trained_model).order(created_at: :desc)
+    @notifications ||= current_user.notifications.unread.preload(work: :trained_model).order(created_at: :desc)
   end
 
   def notifications_count
-    @_notifications_count ||= notifications.count
+    @notifications_count ||= notifications.count
   end
 
   def notifications_exists?

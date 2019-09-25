@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Work
-  concern :UseJob do
+  concern :UseJob do # rubocop:disable all
     JOB_QUEUE_COUNT = 3
 
     included do

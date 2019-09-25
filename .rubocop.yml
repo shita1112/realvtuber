@@ -10,6 +10,8 @@ AllCops:
     - "bin/bundle"
     - "node_modules/**/*"
     - "db/schema.rb"
+    - "vendor/bundle/**/*"
+    - "app/models/work/create_videos.rb"
 
 Layout/IndentationConsistency:
   EnforcedStyle: normal
@@ -22,3 +24,6 @@ Layout/MultilineMethodCallIndentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+RSpec/MultipleExpectations:
+  Enabled: false
