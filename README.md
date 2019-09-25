@@ -8,3 +8,5 @@ Real Virtual Youtuber anonymizes your face by swapping the face of a non-existen
 - Hosting: https://realvtuber.shita1112.com
 - Explanation Article: http://nekorails.hatenablog.com/entry/2019/09/11/145136
 
+## Code Status
+[![CircleCI](https://circleci.com/gh/shita1112/realvtuber.svg?style=svg)](https://circleci.com/gh/shita1112/realvtuber)
