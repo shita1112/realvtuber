@@ -11,6 +11,6 @@ class CloudFrontUrlSigner
   def signed_url(url)
     return url unless Rails.env.production?
 
-    @signer.signed_url(url, expires: Time.current + 1.week)
+    @signer.signed_url(url, expires: 1.week.after)
   end
 end
