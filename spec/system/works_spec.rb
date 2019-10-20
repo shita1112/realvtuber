@@ -58,8 +58,11 @@ RSpec.describe "Works", type: :system do
       click_on "動画を作る"
     end
 
-    it 'shows "動画作成を受け付けました。"' do
-      expect(page).to have_content "動画作成を受け付けました。"
+    # it 'shows "動画作成を受け付けました。"' do
+    #   expect(page).to have_content "動画作成を受け付けました。"
+    # end
+    it 'shows "申し訳ありません。"' do
+      expect(page).to have_content "申し訳ありません。"
     end
   end
 
