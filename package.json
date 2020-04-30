@@ -9,7 +9,7 @@
     "datatables.net": "^1.10.19",
     "es6-promise": "^4.2.8",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mdb": "https://github.com/shita1112/mdb",
     "node-waves": "^0.7.6",
     "popper.js": "^1.15.0",
