@@ -1,5 +1,5 @@
 
-FROM ruby:2.6.5
+FROM circleci/ruby:2.6.5-node-browsers
 
 RUN apt-get update -qq && \
     apt-get install -y apt-utils build-essential apt-transport-https libxml2-dev  postgresql-client
@@ -36,7 +36,7 @@ WORKDIR $APP_ROOT
 # - rake db:seed = to runs the seeds task to populate the
 # 		 		   database with preliminary data
 #############################################################
-ONBUILD RUN bundle install
+ONBUILD RUN bundle install --jobs=4 --retry=3 --path vendor/bundle --clean
 ONBUILD RUN rake db:migrate
 ONBUILD RUN rake db:seed
 

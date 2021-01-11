@@ -1,14 +1,18 @@
 version: "3.9"
 services:
   db:
-    image: postgres
+    image: circleci/mysql:5.7
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./tmp/db:/var/lib/mysql/data
     environment:
-      POSTGRES_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: realvtuber_test
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment: 
+      RAILS_ENV: test
     volumes:
       - .:/myapp
     ports:
