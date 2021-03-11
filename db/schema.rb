@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_09_07_075135) do
 
-  create_table "delayed_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "delayed_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -22,15 +22,15 @@ ActiveRecord::Schema.define(version: 2019_09_07_075135) do
     t.datetime "failed_at"
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.bigint "work_id"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "work_id", null: false
     t.boolean "read", default: false, null: false
   end
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2019_09_07_075135) do
     t.string "name", null: false
     t.string "display_name", null: false
     t.string "face_image", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "trainer", null: false
   end
 
@@ -59,13 +59,14 @@ ActiveRecord::Schema.define(version: 2019_09_07_075135) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.string "filename", null: false
     t.datetime "completed_at"
     t.bigint "trained_model_id", null: false
     t.bigint "user_id", null: false
@@ -74,9 +75,8 @@ ActiveRecord::Schema.define(version: 2019_09_07_075135) do
     t.string "comparison_video"
     t.string "original_image"
     t.string "df_image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "filename", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "comparison_image"
     t.string "uuid", null: false
     t.index ["trained_model_id"], name: "index_works_on_trained_model_id"
