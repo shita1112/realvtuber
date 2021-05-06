@@ -13,7 +13,7 @@
     "mdb": "https://github.com/shita1112/mdb",
     "node-waves": "^0.7.6",
     "popper.js": "^1.15.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
