@@ -1,8 +1,11 @@
+-# %p
+-#   %span 動画作成を受け付けました。
+-#   %br
+-#   %span 動画は先着順で作成しており、完成は
+-#   %span.red-text= @work.wait_time_text
+-#   %span を予定しています。完成しましたら、画面右上の通知アイコンにてお知らせいたします。
+-# %p.text-muted.font-85
+-#   さらに高品質な動画を作りたい方、自分だけの理想の顔を作りたい方、実在する人物の顔を使いたい方は#{link_to "こちら", order_path}
+
 %p
-  %span 動画作成を受け付けました。
-  %br
-  %span 動画は先着順で作成しており、完成は
-  %span.red-text= @work.wait_time_text
-  %span を予定しています。完成しましたら、画面右上の通知アイコンにてお知らせいたします。
-%p.text-muted.font-85
-  さらに高品質な動画を作りたい方、自分だけの理想の顔を作りたい方、実在する人物の顔を使いたい方は#{link_to "こちら", order_path}
+  %span 申し訳ありません。現在一時的にGPUサーバーを停止しております。GPUサーバーを起動して動画作成を進める場合は、お手数ですが #{link_to "@shita1112", Settings.twitter_url, target: "_blank"} までご連絡ください。
